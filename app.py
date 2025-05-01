@@ -19,7 +19,7 @@ password = os.environ.get('password')
 api_key = os.environ.get('api_key')
 app.config['SESSION_COOKIE_NAME'] = 'stash-folder-view'
 logged = False
-network_status = 0  # 默认为内网模式
+network_status = 1  # 默认为内网模式
 
 # 配置SQLite数据库
 if not os.path.exists('data'):
