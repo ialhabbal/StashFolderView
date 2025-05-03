@@ -308,10 +308,11 @@ def index():
             all_urls = []
             for scene_id in file_ids[1]:
                 scene_url = f"/scene/{scene_id}"
-                if network_status == 0:
-                    scene_link = base_url + f"scenes/{scene_id}"
-                else:
-                    scene_link = jump_url + f"scenes/{scene_id}"
+                # if network_status == 0:
+                #     scene_link = base_url + f"scenes/{scene_id}"
+                # else:
+                #     scene_link = jump_url + f"scenes/{scene_id}"
+                scene_link = jump_url + f"scenes/{scene_id}"
                 # scene_title, scene_rating = get_scene_status(scene_id)
                 scene_rating = stash_query.get_file_status(scene_id, True)
                 all_urls.append((scene_url, scene_link, True, scene_id, scene_rating))
@@ -321,6 +322,7 @@ def index():
                     image_link = f"/big_image/{image_id}"
                 else:
                     image_link = f"/big_image/{image_id}"
+
                 # image_title, image_rating = get_image_status(image_id)
                 image_rating = stash_query.get_file_status(image_id, False)
                 all_urls.append((image_url, image_link, False, image_id, image_rating))
@@ -346,10 +348,11 @@ def index():
                     all_urls.append((image_url, image_link, is_video, content_id, image_rating))
                 else:
                     scene_url = f"/scene/{content_id}"
-                    if network_status == 0:
-                        scene_link = base_url + f"scenes/{content_id}"
-                    else:
-                        scene_link = jump_url + f"scenes/{content_id}"
+                    # if network_status == 0:
+                    #     scene_link = base_url + f"scenes/{content_id}"
+                    # else:
+                    #     scene_link = jump_url + f"scenes/{content_id}"
+                    scene_link = jump_url + f"scenes/{content_id}"
                     scene_rating = stash_query.get_file_status(content_id, is_video)
                     all_urls.append((scene_url, scene_link, is_video, content_id, scene_rating))
     else:
