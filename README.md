@@ -44,14 +44,10 @@ API_KEY=Type Your API_Key that you created in Stash
 
 ## 3. Run stash-folder-view
 ```
-Go the directory where you installed StashFolderView
-1. cd StashFolderView
-2. cd venv
-3. cd scripts
-4. Activate
-5. cd..
-6. cd..
-7. flask run --host=0.0.0.0 --port=8000
+Double-click on the file: run.bat
+then ctrl-click on either of these links:
+ http://127.0.0.1:8000
+ http://192.168.1.13:8000
 ```
 # TODO (as per the developer)
 1. Improve floating button behaviors (done)

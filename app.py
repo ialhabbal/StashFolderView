@@ -10,6 +10,9 @@ import os
 from flask import Flask, render_template, request, Response, jsonify, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from utils.folder_db_query import folder_status_process, init_db
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # v3
 app = Flask(__name__)
