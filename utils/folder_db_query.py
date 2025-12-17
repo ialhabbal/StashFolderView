@@ -23,7 +23,7 @@ def init_db():
     conn1.close()
 
 def folder_status_process(folder_id, root_folders, folder_has_subfolders):
-    # 文件夹状态处理
+    # Folder status processing
     print(folder_id)
     print(root_folders)
     folder_details = {}
@@ -40,7 +40,7 @@ def folder_status_process(folder_id, root_folders, folder_has_subfolders):
         ''')
 
 
-    # 处理子文件夹的已读状态
+    # Handle read status of subfolders
     read_status = True
     # print(root_folders[1:])
     subfolder_id = root_folders[0]['folder_id']
@@ -58,7 +58,7 @@ def folder_status_process(folder_id, root_folders, folder_has_subfolders):
                        (subfolder_id,))
         folder_data = cursor.fetchone()
 
-        # 如果 folder_data 为 None，则插入新数据
+        # If folder_data is None, insert a new entry
         if not folder_data:
             read_status = read_status and False
             cursor.execute(
@@ -73,11 +73,11 @@ def folder_status_process(folder_id, root_folders, folder_has_subfolders):
                 'delete_status': folder_data[2]
             }
 
-    # 查询当前 folder_id 的状态，如果没有数据则插入一条新数据
+    # Query current folder_id status; insert a new row if missing
     cursor.execute("SELECT read_status, like_status, delete_status FROM folders WHERE folder_id = ?", (folder_id,))
     folder_data = cursor.fetchone()
     # print(read_status)
-    # 如果 folder_data 为 None，则插入新数据
+    # If folder_data is None, insert a new entry
     if not folder_data:
         if read_status:
             cursor.execute(
@@ -89,7 +89,7 @@ def folder_status_process(folder_id, root_folders, folder_has_subfolders):
                            (folder_id, 0, 0, 0))
             folder_details[folder_id] = {'read_status': 0, 'like_status': 0, 'delete_status': 0}
     else:
-        # 如果没有子文件夹则更新状态为已读
+        # If there are no subfolders, update status to read
         if read_status:
             cursor.execute("UPDATE folders SET read_status = 1 WHERE folder_id = ?", (folder_id,))
             folder_details[folder_id] = {
@@ -105,7 +105,7 @@ def folder_status_process(folder_id, root_folders, folder_has_subfolders):
             }
     # print(folder_details[folder_id])
     # print(folder_details)
-    # 提交更改并关闭连接
+    # Commit changes and close the connection
     conn1.commit()
     conn1.close()
     return folder_details

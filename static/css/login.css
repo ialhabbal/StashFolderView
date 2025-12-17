@@ -1,4 +1,4 @@
-/* 设置页面背景 */
+/* Set page background */
 body {
   margin: 0;
   padding: 0;
@@ -11,19 +11,19 @@ body {
   align-items: center;
 }
 
-/* 登录容器 */
+/* Login container */
 .login-container {
-  background-color: rgba(255, 255, 255, 0.3); /* 半透明背景 */
+  background-color: rgba(255, 255, 255, 0.3); /* semi-transparent background */
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
   text-align: center;
-  backdrop-filter: blur(10px); /* 背景模糊效果 */
+  backdrop-filter: blur(10px); /* background blur effect */
 }
 
-/* 标题样式 */
+/* Title styles */
 h2 {
   font-size: 32px;
   color: var(--primary-color);
@@ -31,13 +31,13 @@ h2 {
   font-weight: 600;
 }
 
-/* 输入框样式 */
+/* Input styles */
 .input-group {
   margin-bottom: 15px;
   text-align: left;
 }
 
-/* 标签样式 */
+/* Label styles */
 label {
   display: block;
   margin-bottom: 5px;
@@ -45,7 +45,7 @@ label {
   /*font-weight: bold; !* Added font-weight property *!*/
 }
 
-/* 输入框样式 */
+/* Input styles */
 input[type="text"], input[type="password"] {
   width: 100%;
   padding: 10px;
@@ -57,14 +57,14 @@ input[type="text"], input[type="password"] {
   transition: all 0.3s ease;
 }
 
-/* 输入框聚焦效果 */
+/* Input focus effect */
 input[type="text"]:focus, input[type="password"]:focus {
   border-color: var(--primary-color);
   outline: none;
   box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
 }
 
-/* 按钮样式 */
+/* Button styles */
 button {
   width: 100%;
   padding: 12px;
@@ -81,7 +81,7 @@ button:hover {
   background-color: var(--secondary-color);
 }
 
-/* 错误信息 */
+/* Error messages */
 #error-message {
   margin-top: 15px;
   font-size: 14px;

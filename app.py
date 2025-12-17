@@ -253,7 +253,7 @@ def index():
         subdirectories = stash_query.find_subdirectory_by_id(folder_id)
 
         folder_has_subfolders = False if len(subdirectories) == 0 else True
-        subdirectories.insert(0, {'folder_id': parent_folder_id, 'relative_path': '上一级'})
+        subdirectories.insert(0, {'folder_id': parent_folder_id, 'relative_path': 'Up'})
         root_folders = subdirectories
         # if folder_has_subfolders:
         #     subdirectories.insert(0, {'folder_id': parent_folder_id, 'relative_path': '上一级'})
@@ -267,8 +267,8 @@ def index():
         # print(folder_id)
         root_folders = stash_query.find_subdirectory_by_id(folder_id)
         # print(root_folders)
-        root_folders.insert(0, {'folder_id': 'favorites', 'relative_path': '收藏', 'parent_folder_id': 'home'})
-        folder_name = '根目录'
+        root_folders.insert(0, {'folder_id': 'favorites', 'relative_path': 'Favorites', 'parent_folder_id': 'home'})
+        folder_name = 'Root'
 
     # 获取当前路径的各个部分
     current_path_parts = []
@@ -289,9 +289,9 @@ def index():
             break
         count += 1
     if count < 5:
-        current_path_parts.insert(0, ('根目录', 'home'))
+        current_path_parts.insert(0, ('Root', 'home'))
     else:
-        current_path_parts.insert(0, ('根目录...', 'home'))
+        current_path_parts.insert(0, ('Root...', 'home'))
 
 
     # if len(current_path_parts) > 2:

@@ -1,13 +1,13 @@
 .files-container {
     width: 80%;
-    /*{#flex-grow: 1;  !* 占满剩余空间 *!#}*/
+    /*{#flex-grow: 1;  !* fill remaining space *!#}*/
     max-height: calc(100vh - 70px);
     overflow-y: auto;
     margin-top: 70px;
     /*{#flex-direction: inherit;#}*/
-    /*{#display: flex; !* 使用 flexbox 来确保内容居中 *!#}*/
-    flex-wrap: wrap; /* 保证内容换行 */
-    justify-content: center; /* 水平方向居中 */
+    /*{#display: flex; !* use flexbox to center content *!#}*/
+    flex-wrap: wrap; /* ensure content wraps */
+    justify-content: center; /* horizontally center */
 }
 
 
@@ -19,7 +19,7 @@
     max-height: 100vh;
     padding-top: 20px;
     justify-content: center;
-    /*{#justify-content: center; !* 确保图片项在父容器内居中 *!#}*/
+    /*{#justify-content: center; !* ensure image items are centered in parent *!#}*/
     gap: 10px;
     /*{#flex-direction: column;#}*/
 }
@@ -33,35 +33,35 @@
 
 .pagination {
     /*{#flex-grow: 1;#}*/
-    margin-top: auto; /* 推到父容器底部 */
+    margin-top: auto; /* push to bottom of parent */
     text-align: center;
     padding: 10px;
     /*{#width: auto;#}*/
-    /*{#background-color: #f0f0f0; !* 背景颜色，可选 *!#}*/
+    /*{#background-color: #f0f0f0; !* background color, optional *!#}*/
 }
 
 .grid-item {
     /*{#display: flex;#}*/
-    width: 250px; /* 固定宽度 */
-    margin-bottom: 5px; /* 控制垂直间距 */
+    width: 250px; /* fixed width */
+    margin-bottom: 5px; /* control vertical spacing */
     position: relative;
-    overflow: hidden; /* 防止溢出 */
+    overflow: hidden; /* prevent overflow */
     /*flex: 1;*/
 }
 
 .grid-item img {
-    width: 100%; /* 宽度始终填满容器 */
-    height: auto; /* 高度根据宽度自动计算 */
-    object-fit: cover; /* 保持图片比例，裁切不合适的部分 */
+    width: 100%; /* always fill container width */
+    height: auto; /* height auto-calculated based on width */
+    object-fit: cover; /* maintain image ratio; crop if necessary */
 }
 .page-btn {
     padding-top: 20px;
     margin: 0 20px;
-    background-color: transparent;  /* 去除按钮背景颜色 */
-    border: none; /* 去除按钮边框 */
-    color: var(--primary-color); /* 按钮文字颜色设置为蓝色 */
-    font-size: 18px; /* 可以根据需求调整按钮文字大小 */
-    cursor: pointer; /* 鼠标悬停时变为指针 */
+    background-color: transparent;  /* remove button background color */
+    border: none; /* remove button border */
+    color: var(--primary-color); /* button text color set to blue */
+    font-size: 18px; /* adjust button text size as needed */
+    cursor: pointer; /* show pointer on hover */
 
 }
 
@@ -83,11 +83,11 @@
     transform: translate(-50%, -50%);
     font-size: 30px;
     color: white;
-    display: none; /* 默认不显示 */
+    display: none; /* hidden by default */
 }
 
 .grid-item.video .play-icon {
-    display: block; /* 如果是视频则显示播放图标 */
+    display: block; /* show play icon if it's a video */
 }
 
 .no-media-message {

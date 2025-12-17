@@ -101,13 +101,13 @@ def find_directory_by_path(path):
 
 def find_directory_by_id(folder_id):
     if folder_id == 'home':
-        return "根目录", 'home'
+      return "Root", 'home'
     if folder_id == 'favorites':
-        return "/收藏", 'home'
+      return "/Favorites", 'home'
     if folder_id == 'favorite_files':
-        return "/收藏/文件", 'favorites'
+      return "/Favorites/Files", 'favorites'
     if folder_id == 'favorite_folders':
-        return '/收藏/文件夹', 'favorites'
+      return '/Favorites/Folders', 'favorites'
     json = {
         "query": f"""
                 mutation {{
@@ -134,14 +134,14 @@ def find_subdirectory_by_id(folder_id=None):
     if folder_id == 'favorites':
         folders = [{
             'folder_id': 'favorite_files',
-            'folder_path': '/收藏/文件',
+        'folder_path': '/Favorites/Files',
             'parent_folder_id': 'favorites',
-            'relative_path': '文件',
+        'relative_path': 'Files',
         }, {
             'folder_id': 'favorite_folders',
-            'folder_path': '/收藏/文件夹',
+        'folder_path': '/Favorites/Folders',
             'parent_folder_id': 'favorites',
-            'relative_path': '文件夹',
+        'relative_path': 'Folders',
         }]
         return folders
     if folder_id == 'favorite_files':

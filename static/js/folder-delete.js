@@ -1,11 +1,11 @@
 function toggleDelete(folderId) {
-    // 获取垃圾桶图标元素
+    // Get trash icon element
     const icon = document.getElementById(`delete-icon-${folderId}-icon`);
 
-    // 获取当前删除图标的状态
+    // Get current delete icon state
     const currentDeleteStatus = icon.getAttribute('datatype') === '1' ? 1 : 0;
 
-    // 如果当前是未删除状态，点击后变为已删除
+    // If currently not deleted, clicking will mark as deleted
     if (currentDeleteStatus === 0) {
         icon.style.color = 'black';  // 设置为红色表示已删除
         icon.setAttribute('datatype', '1'); // 更新状态为已删除

@@ -1,7 +1,7 @@
-/* 针对移动端屏幕的样式 */
+/* Styles for mobile screens */
 @media (max-width: 630px) {
     .grid-item {
-        width: 180px; /* 固定宽度 */
+        width: 180px; /* fixed width */
     }
 
     .folders-container {
@@ -18,7 +18,7 @@
     }
 
     .page-btn {
-        font-size: 16px; /* 可以根据需求调整按钮文字大小 */
+        font-size: 16px; /* adjust button font size as needed */
     }
 
     .current-page {
@@ -32,6 +32,6 @@
         transform: translate(-50%, -50%);
         font-size: 20px;
         color: white;
-        display: none; /* 默认不显示 */
+        display: none; /* hidden by default */
     }
 }

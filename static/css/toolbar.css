@@ -1,4 +1,4 @@
-/* 顶部工具栏 */
+/* Top toolbar */
 .toolbar {
     background-color: var(--primary-color);
     font-size: 16px;
@@ -22,23 +22,23 @@
 }
 
 .delete-btn i:hover {
-    color: black; /* 鼠标悬停时显示暗红色 */
+    color: black; /* show dark red on hover */
 }
 
 .like-btn:hover i {
     /*background-color: red;*/
-    color: red; /* 悬停时变红 */
+    color: red; /* turn red on hover */
 }
 
 .check-btn:hover i {
     /*background-color: red;*/
-    color: lightgray; /* 悬停时变红 */
+    color: lightgray; /* hover color (light gray) */
 }
 
 .like-btn,
 .check-btn{
-    margin-left: 10px; /* 控制两个按钮之间的间距 */
-    cursor: pointer; /* 鼠标悬停时显示可点击 */
+    margin-left: 10px; /* control spacing between two buttons */
+    cursor: pointer; /* show pointer on hover */
 }
 
 .home-btn{
@@ -47,24 +47,24 @@
     cursor: pointer;
 }
 
-/* 退出按钮样式 */
+/* Logout button styles */
 .setting-btn {
     cursor: pointer;
     margin-left: 10px; /* 控制两个按钮之间的间距 */
     /*{#margin-bottom: 10px;#}*/
-    font-size: 24px; /* 调整图标大小 */
+    font-size: 24px; /* adjust icon size */
     display: inline-flex;
     align-items: center;
 }
 
-/* 图标大小和颜色 */
+/* Icon size and color */
 .setting i {
     transition: color 0.3s ease;
 }
 
 .like-btn i,
 .check-btn i{
-    font-size: 24px; /* 设置图标的大小 */
+    font-size: 24px; /* set icon size */
 }
 
 .menu-btn {
@@ -76,14 +76,14 @@
     /*{#font-size: 28px;#}*/
     /*{#margin-left: 20px;#}*/
     /*{#cursor: pointer;#}*/
-    transform: translateY(2px); /* 向下移动图标 */
+    transform: translateY(2px); /* move icon down */
 }
 .folders_name{
     justify-self: center;
     width: 30%;
     white-space: nowrap;
-    overflow: hidden;  /* 隐藏溢出的部分 */
-    text-overflow: ellipsis;  /* 显示省略号 */
+    overflow: hidden;  /* hide overflow */
+    text-overflow: ellipsis;  /* show ellipsis */
     text-align: center;
 }
 

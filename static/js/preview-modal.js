@@ -1,7 +1,7 @@
 // script.js
 let currentImageIndex = 0;
 let scale = 1;
-// 定义拖动的变量
+// drag-related variables
 let isLongPress = false;
 let startX, startY;
 let offsetX = 0, offsetY = 0;
@@ -29,7 +29,7 @@ function openPreview(index0, is_video){
         window.open(links[currentImageIndex], '_blank');
     }
 }
-// 关闭预览框
+// close preview modal
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
     img_offsetX = 0;
@@ -37,26 +37,26 @@ closeBtn.addEventListener('click', () => {
     scale = 1;
 });
 
-// 上一张图片
+// previous image
 prevBtn.addEventListener('click', () => {
     do {
         currentImageIndex = (currentImageIndex - 1 + links.length) % links.length;
         } while (!links[currentImageIndex].includes('big_image'));
 
-        // 满足条件后执行相应逻辑
+        // once a valid image is found, update preview
         previewImage.src = links[currentImageIndex];
         scale = 1;
         previewImage.style.transform = `scale(${scale})`;
         imageCount.textContent = `${currentImageIndex + 1} / ${links.length}`;
 });
 
-// 下一张图片
+// next image
 nextBtn.addEventListener('click', () => {
     do {
         currentImageIndex = (currentImageIndex + 1) % links.length;
         } while (!links[currentImageIndex].includes('big_image'));
 
-        // 满足条件后执行相应逻辑
+        // once a valid image is found, update preview
         previewImage.src = links[currentImageIndex];
         scale = 1;
         previewImage.style.transform = `scale(${scale})`;
@@ -68,7 +68,7 @@ previewImage.addEventListener('dblclick', (e) => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
     if (scale < 9) {
-        // 向上滚动：放大
+        // zoom in
         // console.log("offset1", img_offsetX, img_offsetY)
         offsetX = (centerX - e.clientX) / scale;
         offsetY = (centerY - e.clientY) / scale;
@@ -80,7 +80,7 @@ previewImage.addEventListener('dblclick', (e) => {
         previewImage.style.transition = 'transform 0.3s ease';
         previewImage.style.transform = `scale(${scale}) translate(${img_offsetX}px, ${img_offsetY}px)`;
     } else {
-        // 向下滚动：缩小
+        // zoom out
         scale = 1
         img_offsetX = 0
         img_offsetY = 0
@@ -90,58 +90,58 @@ previewImage.addEventListener('dblclick', (e) => {
 
 });
 
-// 监听鼠标滚轮缩放
+// listen for mouse wheel zoom
 previewImage.addEventListener('wheel', (e) => {
-    // 如果没有按住 Ctrl 键，则不进行缩放
+    // Do not zoom unless Ctrl key is held
     if (!e.ctrlKey) {
         return;
     }
 
-    e.preventDefault(); // 防止页面滚动
+    e.preventDefault(); // prevent page scroll
 
     if (e.deltaY < 0) {
-        // 向上滚动：放大
+        // wheel up: zoom in
         scale *= 1.1;
     } else {
-        // 向下滚动：缩小
+        // wheel down: zoom out
         scale /= 1.1;
     }
 
-    // 限制缩放范围
-    scale = Math.max(1, Math.min(scale, 5)); // 设定最小缩放为1，最大为3
+    // clamp scale
+    scale = Math.max(1, Math.min(scale, 5));
 
-    // 更新图片的transform属性
+    // update transform
     previewImage.style.transition = 'transform 0.3s ease';
     previewImage.style.transform = `scale(${scale})`;
 });
 
 
 previewImage.addEventListener('mousedown', (e) => {
-    // 防止图片的默认拖动行为
+    // prevent default image drag
     e.preventDefault();
 
     startX = e.clientX;
     startY = e.clientY;
 
-    // 设置一个定时器判断是否为长按
+    // set a timer to detect long press
     pressTimer = setTimeout(() => {
         isLongPress = true;
-        // previewImage.style.cursor = 'grabbing'; // 改为抓取样式
-    }, 100);  // 500毫秒判断为长按，可以调整这个值
+        // previewImage.style.cursor = 'grabbing'; // change to grabbing cursor
+    }, 100);  // 500ms is considered a long press; adjust as needed
 
 });
 
-// 鼠标移动时拖动图片
+// drag image while mouse moves
 previewImage.addEventListener('mousemove', (e) => {
     if (isLongPress) {
-        // 计算鼠标的相对移动
+        // compute mouse delta
         let deltaX = e.clientX - startX;
         let deltaY = e.clientY - startY;
-        // 根据缩放比例调整偏移量，避免移动过大
+        // adjust by scale to avoid large jumps
         img_offsetX += deltaX / scale;
         img_offsetY += deltaY / scale;
 
-        // // 更新 lastX 和 lastY，防止偏移量累加出现误差
+        // update last positions to avoid accumulation error
         startX = e.clientX;
         startY = e.clientY;
         previewImage.style.transition = 'none';
@@ -152,29 +152,29 @@ previewImage.addEventListener('mousemove', (e) => {
 
 previewImage.addEventListener('touchmove', function(e) {
     if (e.touches.length === 1) {
-        // 获取滑动的距离
+        // calculate touch movement
         const moveX = e.touches[0].clientX - startX;
         const moveY = e.touches[0].clientY - startY;
 
-        // 更新偏移量
+        // update offsets
         img_offsetX += moveX / scale;
         img_offsetY += moveY / scale;
 
         startX = e.touches[0].clientX
         startY = e.touches[0].clientY
 
-        // 更新图片位置
+        // update image position
         previewImage.style.transition = 'none';
         previewImage.style.transform = `scale(${scale}) translate(${img_offsetX}px, ${img_offsetY}px)`;
 
-        // 防止默认的触摸滚动行为
+        // prevent default touch scrolling
         e.preventDefault();
     }
 });
 
-// 鼠标松开时停止拖动
+// stop dragging on mouse up
 previewImage.addEventListener('mouseup', () => {
-    // 清除定时器
+    // clear timer
     clearTimeout(pressTimer);
     isLongPress = false;
 });
@@ -187,7 +187,7 @@ previewImage.addEventListener('mouseleave', () => {
 
 
 previewImage.addEventListener('touchstart', function(e) {
-    // 记录触摸起始位置
+    // record touch start position
     if (e.touches.length === 1) {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
@@ -200,11 +200,11 @@ previewImage.addEventListener('touchend', function(e) {
 
     if (timeDifference < 500 && timeDifference > 0) {
         if(e.touches && e.touches.length > 0){
-            // 双击事件发生，时间间隔小于300ms视为双击
+            // treat as double-tap when interval < 500ms
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             if (scale < 10) {
-                // 向上滚动：放大
+                // scroll up: zoom in
                 // console.log("offset1", img_offsetX, img_offsetY)
                 offsetX = (centerX - e.touches[0].clientX);
                 offsetY = (centerY - e.touches[0].clientY);
@@ -216,7 +216,7 @@ previewImage.addEventListener('touchend', function(e) {
                 previewImage.style.transition = 'transform 0.3s ease';
                 previewImage.style.transform = `scale(${scale}) translate(${img_offsetX}px, ${img_offsetY}px)`;
             } else {
-                // 向下滚动：缩小
+                // scroll down: zoom out
                 scale = 1
                 img_offsetX = 0
                 img_offsetY = 0
@@ -225,5 +225,5 @@ previewImage.addEventListener('touchend', function(e) {
             }
         }
     }
-    lastTouchTime = currentTime; // 更新上次触摸时间
+    lastTouchTime = currentTime; // update last touch time
 });

@@ -1,30 +1,30 @@
-// 切换已读/未读状态
+// Toggle read/unread state
 function toggleReadStatus(folderId) {
-    // 获取对勾图标元素
+    // Get checkmark icon element
     const icon = document.getElementById(`check-icon-${folderId}-icon`);
 
-    // 获取当前图标的状态（已读状态）
+    // Get current icon state (read status)
     const currentReadStatus = icon.classList.contains('fas') ? 1 : 0;
 
-    // 如果当前是已读状态，点击后变为未读
+    // If currently read, clicking will mark as unread
     if (currentReadStatus === 1) {
-        // 切换到未读状态
-        icon.classList.remove('fas', 'fa-check-square');  // 移除已读图标
-        icon.classList.add('far', 'fa-check-square');     // 添加未读图标
+        // switch to unread state
+        icon.classList.remove('fas', 'fa-check-square');  // remove read icon
+        icon.classList.add('far', 'fa-check-square');     // add unread icon
         icon.style.color = 'white';
-        // 更新数据库状态为未读
+        // update DB status to unread
         updateReadStatus(folderId, 0);
     } else {
-        // 如果当前是未读状态，点击后变为已读
-        icon.classList.remove('far', 'fa-check-square');  // 移除未读图标
-        icon.classList.add('fas', 'fa-check-square');     // 添加已读图标
+        // If currently unread, clicking will mark as read
+        icon.classList.remove('far', 'fa-check-square');  // remove unread icon
+        icon.classList.add('fas', 'fa-check-square');     // add read icon
         icon.style.color = 'lightgray';
-        // 更新数据库状态为已读
+        // update DB status to read
         updateReadStatus(folderId, 1);
     }
 }
 
-// 更新数据库中的 read 状态
+// update read status in DB
 function updateReadStatus(folderId, readStatus) {
     fetch('/update_read_status', {
         method: 'POST',
@@ -36,10 +36,10 @@ function updateReadStatus(folderId, readStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            console.log('已读状态更新成功');
+            console.log('Read status updated successfully');
         }
     })
     .catch(error => {
-        console.error('更新失败', error);
+        console.error('Update failed', error);
     });
 }

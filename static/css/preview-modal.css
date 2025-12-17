@@ -20,8 +20,8 @@
 .modal {
     display: none;
     position: fixed;
-    justify-content: center;      /* 水平居中 */
-    align-items: center;          /* 垂直居中 */
+    justify-content: center;      /* horizontally centered */
+    align-items: center;          /* vertically centered */
     /*margin-top: 50px;*/
     z-index: 1001;
     /*padding-top: 60px;*/
@@ -43,8 +43,8 @@
 }
 
 #preview-image {
-    position: relative; /* 确保能够自由拖动 */
-    /*cursor: grab; !* 默认显示抓取指针 *!*/
+    position: relative; /* position relative to allow dragging */
+    /* cursor: grab; default show grab pointer */
     max-width: 100%;
     max-height: 80vh;
     transition: transform 0.25s ease;
@@ -83,16 +83,16 @@
     z-index: 1002;
 }
 
-/* 样式化图片序号显示 */
+/* Style image index display */
 .image-count {
     position: absolute;
-    left: 50%;     /* 水平居中 */
+    left: 50%;     /* horizontally centered */
     top: 95%;
-    transform: translateX(-50%);  /* 精确居中 */
+    transform: translateX(-50%);  /* precise centering */
     color: white;
     font-size: 18px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.5);  /* 背景色透明 */
+    background-color: rgba(0, 0, 0, 0.5);  /* transparent background color */
     padding: 5px;
     border-radius: 5px;
 }

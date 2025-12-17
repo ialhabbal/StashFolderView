@@ -1,5 +1,5 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
-  event.preventDefault();  // 防止表单默认提交
+  event.preventDefault();  // prevent default form submission
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;

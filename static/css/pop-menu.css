@@ -1,8 +1,8 @@
 #popupMenu {
     display: none;
     position: fixed;
-    top: 50px; /* 距离页面顶部 10px */
-    right: 0; /* 距离页面右侧 10px */
+    top: 50px; /* distance from page top 10px */
+    right: 0; /* distance from page right 10px */
     border: 1px solid #ccc;
     background-color: #fff;
     width: 200px;
@@ -14,7 +14,7 @@
     color: var(--primary-color);
 }
 
-/* 菜单项样式 */
+/* Menu item styles */
 #popupMenu ul {
     list-style: none;
     margin: 0;
@@ -30,17 +30,17 @@
     background-color: lightgray;
 }
 
-/* 退出按钮样式 */
+/* Logout button styles */
 .logout-btn {
     cursor: pointer;
-    margin-left: 10px; /* 控制两个按钮之间的间距 */
+    margin-left: 10px; /* control spacing between two buttons */
     /*{#margin-bottom: 10px;#}*/
-    font-size: 20px; /* 调整图标大小 */
+    font-size: 20px; /* adjust icon size */
     display: inline-flex;
     align-items: center;
 }
 
-/* 图标大小和颜色 */
+/* Icon size and color */
 .logout-btn i {
     transition: color 0.3s ease;
 }
@@ -64,26 +64,26 @@
   margin-left: 8px;
 }
 #popupMenu ul li {
-    display: flex;              /* 使用flexbox布局 */
-    align-items: center;        /* 垂直居中对齐 */
-    gap: 8px;                   /* 设置各个元素之间的间距，可以调整 */
+    display: flex;              /* use flexbox layout */
+    align-items: center;        /* vertically center align */
+    gap: 8px;                   /* set gap between elements; adjustable */
 }
 
 .folder_control_label input {
     display: flex;
-    justify-content: flex-end; /* 右对齐 */
+    justify-content: flex-end; /* right align */
     /*flex-grow: 1; !* 让label占据整个可用宽度 *!*/
     accent-color: var(--primary-color);
 
 }
 .folder_control_label input[type="checkbox"] {
-  transform: scale(1.5);  /* 放大checkbox */
+    transform: scale(1.5);  /* scale checkbox */
 }
 
 .folder_control_label {
-  margin-left: auto;          /* 将checkbox右对齐 */
+    margin-left: auto;          /* align checkbox to right */
 }
-/* 给 folder_control 添加一些布局样式 */
+/* Add layout styles for folder_control */
 /*.folder_control {*/
 /*    !*margin-top: 20px;*!*/
 /*    display: flex;*/

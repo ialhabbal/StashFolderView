@@ -1,21 +1,21 @@
 function toggleLike(folderId) {
-    // 获取爱心图标元素
+    // Get heart icon element
     const icon = document.getElementById(`heart-icon-${folderId}`);
 
-    // 获取当前图标的状态
+    // Get current icon state
     const currentLikeStatus = icon.classList.contains('fas') ? 1 : 0;
 
-    // 如果当前是已点赞状态，点击后变为未点赞
+    // If currently liked, clicking will unlike
     if (currentLikeStatus === 1) {
-        // 切换到未点赞状态
-        icon.classList.remove('fas', 'fa-heart');  // 移除已点赞图标
-        icon.classList.add('far', 'fa-heart');     // 添加未点赞图标
-        icon.style.color = 'white';                  // 设置为灰色
-        // 更新数据库状态为未点赞
+        // switch to unliked state
+        icon.classList.remove('fas', 'fa-heart');  // remove liked icon
+        icon.classList.add('far', 'fa-heart');     // add unliked icon
+        icon.style.color = 'white';                  // set to gray
+        // update DB status to unliked
         updateLikeStatus(folderId, 0);
     } else {
-        // 如果当前是未点赞状态，点击后变为已点赞
-        icon.classList.remove('far', 'fa-heart');  // 移除未点赞图标
+        // If currently unliked, clicking will like
+        icon.classList.remove('far', 'fa-heart');  // remove unliked icon
         icon.classList.add('fas', 'fa-heart');     // 添加已点赞图标
         icon.style.color = 'red';                   // 设置为红色
         // 更新数据库状态为已点赞

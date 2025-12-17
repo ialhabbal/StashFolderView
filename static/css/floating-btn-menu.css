@@ -5,11 +5,11 @@ body {
 }
 
 .floating-btn {
-    width: 60px;  /* 设置按钮的大小 */
+    width: 60px;  /* set button size */
     height: 60px;
     margin-right: 20px;
     margin-bottom: 20px;
-    border-radius: 50%;  /* 让按钮变成圆形 */
+    border-radius: 50%;  /* make button circular */
     background-color: var(--primary-color);  /* 设置按钮背景颜色为灰色 */
     border: none;  /* 移除默认边框 */
     position: fixed;  /* 固定按钮在页面右下角 */

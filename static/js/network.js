@@ -1,6 +1,6 @@
 function toggle_network_status(folder_id) {
     const icon = document.getElementById(`network-toggle`);
-    // 获取当前图标的状态
+    // Get current icon state
     const currentNetworkStatus = icon.classList.contains('fas') ? 0 : 1;
     console.log(currentNetworkStatus)
     console.log(icon.classList)
@@ -10,7 +10,7 @@ function toggle_network_status(folder_id) {
         updateNetworkStatus(1);
         window.location.href = '/folders?id=' + folder_id ;
     } else {
-        // 如果当前是未点赞状态，点击后变为已点赞
+        // If currently unliked, clicking will like
         icon.classList.remove('fa', 'fa-globe');
         icon.classList.add('fas', 'fa-desktop');
         updateNetworkStatus(0);
@@ -18,7 +18,7 @@ function toggle_network_status(folder_id) {
     }
 }
 
-// 更新数据库中的 like 状态
+// update like status in DB
 function updateNetworkStatus(networkStatus) {
     fetch('/update_network_status', {
         method: 'POST',
@@ -30,7 +30,7 @@ function updateNetworkStatus(networkStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            console.log('网络状态更新成功');
+            console.log('Network status updated successfully');
         }
     })
     .catch(error => {

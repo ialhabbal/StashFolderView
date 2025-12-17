@@ -2,30 +2,30 @@ const breadcrumb = document.getElementById('breadcrumb');
 let isDragging = false;
 let b_startX, b_scrollLeft;
 
-// 按下鼠标时
+// on mouse down
 breadcrumb.addEventListener('mousedown', (e) => {
     isDragging = true;
-    b_startX = e.pageX - breadcrumb.offsetLeft;  // 获取鼠标按下时的位置
-    b_scrollLeft = breadcrumb.scrollLeft;  // 获取当前的滚动位置
-    breadcrumb.classList.add('dragging');  // 改变光标样式为抓取中
+    b_startX = e.pageX - breadcrumb.offsetLeft;  // start X position
+    b_scrollLeft = breadcrumb.scrollLeft;  // current scroll position
+    breadcrumb.classList.add('dragging');  // change cursor style
 });
 
-// 移动鼠标时
+// on mouse move
 breadcrumb.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;  // 如果没有按住鼠标，则不做处理
-    const x = e.pageX - breadcrumb.offsetLeft;  // 获取鼠标当前位置
-    const walk = (x - b_startX) * 2;  // 计算拖动的距离
-    breadcrumb.scrollLeft = b_scrollLeft - walk;  // 更新滚动位置
+    if (!isDragging) return;  // ignore if not dragging
+    const x = e.pageX - breadcrumb.offsetLeft;  // current mouse X
+    const walk = (x - b_startX) * 2;  // compute drag distance
+    breadcrumb.scrollLeft = b_scrollLeft - walk;  // update scroll
 });
 
-// 鼠标松开时
+// on mouse up
 breadcrumb.addEventListener('mouseup', () => {
     isDragging = false;
-    breadcrumb.classList.remove('dragging');  // 恢复光标样式
+    breadcrumb.classList.remove('dragging');  // restore cursor
 });
 
-// 离开时
+// on leave
 breadcrumb.addEventListener('mouseleave', () => {
     isDragging = false;
-    breadcrumb.classList.remove('dragging');  // 恢复光标样式
+    breadcrumb.classList.remove('dragging');  // restore cursor
 });

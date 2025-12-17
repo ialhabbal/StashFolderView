@@ -1,4 +1,4 @@
-/* 左侧：文件夹结构 */
+/* Left: folder structure */
 .folders-container {
     display: flex;
     width: 20%;
@@ -8,7 +8,7 @@
     max-height: calc(100vh - 50px);
     height: 100vh;
     transition: transform 0.3s ease;
-    border-right: 1px solid #ccc; /* 右侧边框 */
+    border-right: 1px solid #ccc; /* right border */
     flex-direction: column;
     background: var(--background-color);
     overflow-y: auto;
@@ -37,12 +37,12 @@
     /*font-size: 14px;*/
         border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡效果 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* smooth transition effect */
 
 }
 
 .folder-bar:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 悬停时阴影效果 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover shadow effect */
 
 }
 
@@ -50,14 +50,14 @@
     font-size: 14px;
 }
 
-/* 去除目录列表的小圆点 */
+/* Remove bullets from directory list */
 .folders-container ul {
-    padding-left: 0; /* 移除默认的内边距 */
+    padding-left: 0; /* remove default padding */
     margin: 0;
 }
 
 .folders-container li {
-    list-style-type: none; /* 去掉默认的小圆点 */
+    list-style-type: none; /* remove default bullets */
     margin: 5px 0 0 10px;
 }
 
@@ -78,14 +78,14 @@
 /* Folder icon styling */
 .folder-icon {
     display: flex;
-    flex-direction: column;  /* 图标和文件名垂直排列 */
-    align-items: center;  /* 水平居中 */
+    flex-direction: column;  /* icons and filenames arranged vertically */
+    align-items: center;  /* horizontally centered */
     /*{#justify-content: center;  !* 垂直居中 *!#}*/
     /*{#width: 100px;  !* 固定宽度 *!#}*/
     /*{#max-height: 100px;#}*/
     /*{#height: 150px;  !* 固定高度 *!#}*/
     text-align: center;
-    border-radius: 8px;  /* 可选：圆角 */
+    border-radius: 8px;  /* optional: rounded corners */
 }
 
 .folder-icon i {
@@ -93,21 +93,21 @@
     color: var(--primary-color);   /* Green folder color */
     margin-bottom: 10px;
     cursor: pointer;
-    transition: transform 0.2s ease;  /* 可选：平滑的悬停效果 */
+    transition: transform 0.2s ease;  /* optional: smooth hover effect */
 }
 
 .folder-icon span {
-    display: -webkit-box;  /* 使用弹性盒子模型 */
-    -webkit-box-orient: vertical;  /* 垂直排列 */
+    display: -webkit-box;  /* use flexbox-like box model */
+    -webkit-box-orient: vertical;  /* vertical orientation */
     -webkit-line-clamp: 4;
-    overflow: hidden;  /* 隐藏溢出的部分 */
-    text-overflow: ellipsis;  /* 显示省略号 */
+    overflow: hidden;  /* hide overflow */
+    text-overflow: ellipsis;  /* show ellipsis */
     width: 100px;
     max-height: 80px;
     font-size: 14px;
     color: var(--text-color-contrast);
     margin-top: 5px;
-    /*line-height: 1.2;  !* 设置行高，避免文字过紧 *!*/
+    /*line-height: 1.2;  !* set line-height to avoid cramped text *!*/
 
 }
 

@@ -28,12 +28,12 @@ function toggleFileLike(file_id, is_video) {
     }).then(response => {
         if (!response.ok) {
             return response.json().then(data => {
-                // alert('更新失败: ' + (data.message || '未知错误'));
+                // alert('Update failed: ' + (data.message || 'Unknown error'));
             });
         }
-        // alert('更新成功');
+        // alert('Update succeeded');
     }).catch(error => {
-        console.error('请求失败', error);
+        console.error('Request failed', error);
     });
 
 }

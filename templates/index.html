@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stash相册</title>
+    <!-- Top toolbar -->
+    <title>Stash Gallery</title>
     <link rel="shortcut icon" href="/static/images/favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/floating-btn-menu.css">
@@ -25,34 +26,34 @@
         }
 
         a {
-            text-decoration: none; /* 去掉下划线 */
+            text-decoration: none; /* remove underline */
         }
 
         .container {
             display: flex;
             flex-grow: 1;
-            transition: margin-left 0.3s ease; /* 增加过渡效果 */
+            transition: margin-left 0.3s ease; /* add transition effect */
         }
     </style>
     <style>
-        /* 禁止选择文本和拖动 */
+        /* disable text selection and dragging */
         .no-select {
             user-select: none;
-            -webkit-user-select: none; /* 对 Safari 生效 */
-            -moz-user-select: none;    /* 对 Firefox 生效 */
-            -ms-user-select: none;     /* 对 Internet Explorer 生效 */
+            -webkit-user-select: none; /* works for Safari */
+            -moz-user-select: none;    /* works for Firefox */
+            -ms-user-select: none;     /* works for Internet Explorer */
         }
   </style>
 </head>
 <body>
 
-<!-- 顶部工具栏 -->
+    <!-- Top toolbar -->
 <div class="toolbar no-select">
     <div>
         <span class="menu-btn" id="menu-btn"><i class="fa-solid fa-list" style="color:var(--icon-color)"></i></span>
-        <!-- 新增主页按钮 -->
+        <!-- Add home button -->
         <a href="{{ url_for('index') }}" id="home-icon" class="home-btn">
-            <i class="fas fa-home" style="color:var(--icon-color)"></i> <!-- 白色房子图标 -->
+            <i class="fas fa-home" style="color:var(--icon-color)"></i> <!-- white home icon -->
         </a>
 
     </div>
@@ -66,51 +67,51 @@
                class="{% if folder_details[folder_id].like_status == 1 %}fas fa-heart{% else %}fa-solid fa-heart{% endif %}"
                style="color: {% if folder_details[folder_id].like_status == 1 %}red{% else %}'var(--icon-color)'{% endif %};"></i>
         </span>
-        <!-- 删除图标 (垃圾桶形状) -->
+        <!-- delete icon (trash can) -->
         <span id="delete-icon-{{ folder_id }}" class="delete-btn" onclick="toggleDelete('{{ folder_id }}')">
             <i id="delete-icon-{{ folder_id }}-icon"
                class="fa fa-trash" datatype="{{ folder_details[folder_id].delete_status }}"
                style="color: {% if folder_details[folder_id].delete_status == 1 %}black{% else %}'var(--icon-color)'{% endif %};"></i>
         </span>
-        <!-- 对勾图标 -->
+        <!-- Check icon -->
         <span id="check-icon-{{ folder_id }}" class="check-btn" onclick="toggleReadStatus('{{ folder_id }}')">
                 <i id="check-icon-{{ folder_id }}-icon"
                    class="{% if folder_details[folder_id].read_status == 1 %}fas fa-check-square{% else %}far fa-check-square{% endif %}"
                    style="color: {% if folder_details[folder_id].read_status == 1 %}lightgray{% else %}'var(--icon-color)'{% endif %};"></i>
         </span>
-        <!-- 退出图标 -->
+        <!-- Logout icon -->
         <span id="setting-icon" class="setting-btn" onclick="toggleMenu()">
-            <i class="fa-solid fa-gear" style="color:var(--icon-color)"></i> <!-- 只显示图标 -->
+            <i class="fa-solid fa-gear" style="color:var(--icon-color)"></i> <!-- icon only -->
         </span>
         <div id="popupMenu">
             <ul>
                 <li>
                     <i id="select-video-icon" class="fa-regular fa-window-restore" style="color:var(--primary-color)"></i>
-                    <span>筛选视频</span>
+                    <span>Filter videos</span>
                     <label class="folder_control_label">
                         <input type="checkbox" id="select-video"/>
                     </label>
                 </li>
                 <li>
                     <i id="hide-read-icon" class="fa-regular fa-eye-slash" style="color:var(--primary-color)"></i>
-                    <span>收起已读</span>
+                    <span>Hide read</span>
                     <label class="folder_control_label">
                         <input type="checkbox" id="toggleRead"/>
                     </label>
                 </li>
                 <li onclick=toggle_network_status({{ folder_id }})>
-                    <!-- 新增网络切换按钮 -->
+                    <!-- Add network toggle button -->
                     <a class="network-btn" >
                         <i id="network-toggle" class="{% if network_status == 0 %}fas fa-desktop{% else %}fa fa-globe{% endif %}" style="color:var(--primary-color)"></i>
                     </a>
-                    <span>外网访问</span>
+                    <span>External access</span>
                 </li>
                 <li onclick="logout()">
-                    <!-- 退出图标 -->
+                    <!-- Logout icon -->
                     <span id="logout-icon" class="logout-btn" >
-                        <i class="fas fa-sign-out-alt" style="color:var(--primary-color)"></i> <!-- 只显示图标 -->
+                        <i class="fas fa-sign-out-alt" style="color:var(--primary-color)"></i> <!-- icon only -->
                     </span>
-                    <span>退出登录</span>
+                    <span>Logout</span>
                 </li>
             </ul>
         </div>
@@ -119,7 +120,7 @@
 </div>
 
 <div class="container no-select">
-    <!-- 左侧：文件夹结构 -->
+    <!-- Left: folder structure -->
     <div id="folder_has_medias" data-folder-id="{{ folder_has_medias }}"></div>
     <div id="folder_has_subfolders" data-folder-id="{{ folder_has_subfolders }}"></div>
     <div id="folder_id" data-folder-id="{{ folder_id }}"></div>
@@ -143,7 +144,7 @@
                         data-folder-read="{{ folder_read }}" data-folder-relative-path="{{ folder.relative_path }}">
                         <a onclick="goToFolder('{{ folder.folder_id }}')">
                             <div class="folder-bar"
-                                 style="background-color:{% if folder_like == 1 and folder.relative_path != '上一级' %} #f5b1aa {% else %} transparent {% endif %};
+                                 style="background-color:{% if folder_like == 1 and folder.relative_path != 'Up' %} #f5b1aa {% else %} transparent {% endif %};
                                          {% if folder_delete == 1 %} text-decoration: line-through; {% endif %};">
                                 <span style="color: {% if folder_read == 0 or folder_like == 1 %} 'var(--text-color)' {% else %} #777 {% endif %};">{{ folder.relative_path }}</span>
                             </div>
@@ -155,7 +156,7 @@
         </div>
     </div>
 
-    <!-- 右侧：文件内容展示 -->
+    <!-- Right: file content display -->
     <div class="files-container" id="files-container">
         <div class="breadcrumb" id="breadcrumb">
             <div class="folder_path">
@@ -173,19 +174,19 @@
                 <div class="image-box" id="masonry-grid">
                     {% for url, link, is_video, file_id, file_like in all_urls %}
                         <div class="grid-item {% if is_video %}video{% endif %}">
-                            <a onclick="openPreview({{ loop.index0 }}, '{{ is_video }}')">
-                                <img src="{{ url }}" alt="图片"/>
+                                <a onclick="openPreview({{ loop.index0 }}, '{{ is_video }}')">
+                                <img src="{{ url }}" alt="Image"/>
                             </a>
                             {% if is_video %}
-                                <div class="play-icon">&#9654;</div> <!-- 播放图标 -->
+                                <div class="play-icon">&#9654;</div> <!-- play icon -->
                             {% endif %}
-                            <!-- 使用Font Awesome爱心图标 -->
+                            <!-- Using Font Awesome heart icon -->
                             <div class="like-icon" id="like-{{ file_id }}" data-liked="{{ file_like }}"
                                  onclick="toggleFileLike('{{ file_id }}', '{{ is_video }}')">
                                 {% if file_like == 100 %}
-                                    <i class="fas fa-heart"></i> <!-- 红色爱心 -->
+                                    <i class="fas fa-heart"></i> <!-- red heart -->
                                 {% else %}
-                                    <i class="far fa-heart"></i> <!-- 空的爱心 -->
+                                    <i class="far fa-heart"></i> <!-- empty heart -->
                                 {% endif %}
                             </div>
                         </div>
@@ -200,24 +201,24 @@
                         <div id="image-count" class="image-count">1 / {{ all_urls | length}}</div>
                     </div>
                 </div>
-                <!-- 翻页按钮 -->
+                <!-- Pagination buttons -->
                 {% if total_pages > 1 %}
                     <div class="pagination" id="pagination">
-                        <a id="prevPage" class="page-btn {% if page == 1 %} disabled {% endif %}"
-                           href="{{ url_for('index', id=folder_id, page=page - 1) }}">上一页</a>
-                        <span class="current-page">{{ page }} of {{ total_pages }}</span> <!-- 显示当前页数 -->
-                        {#                        <span class="current-page">总页数：</span> <!-- 显示总页数 -->#}
-                        <a id="nextPage" class="page-btn {% if page == total_pages %} disabled {% endif %}"
-                           href="{{ url_for('index', id=folder_id, page=page + 1) }}">下一页</a>
+                                <a id="prevPage" class="page-btn {% if page == 1 %} disabled {% endif %}"
+                                    href="{{ url_for('index', id=folder_id, page=page - 1) }}">Previous</a>
+                        <span class="current-page">{{ page }} of {{ total_pages }}</span> <!-- show current page number -->
+                        {#                        <span class="current-page">Total pages:</span> <!-- show total pages -->#}
+                                <a id="nextPage" class="page-btn {% if page == total_pages %} disabled {% endif %}"
+                                    href="{{ url_for('index', id=folder_id, page=page + 1) }}">Next</a>
                     </div>
                 {% endif %}
             </div>
         {% else %}
             {% if folder_has_subfolders %}
                 <div class="folders_view">
-                    <!-- 子文件夹图标 -->
+                    <!-- Subfolder icon -->
 {#                    <div class="folder-bar"#}
-{#                         style="background-color: {% if folder_like == 1 and folder.relative_path != '上一级' %} #f5b1aa {% else %} transparent {% endif %};#}
+{#                         style="background-color: {% if folder_like == 1 and folder.relative_path != 'Up' %} #f5b1aa {% else %} transparent {% endif %};#}
 {#                                 {% if folder_delete == 1 %} text-decoration: line-through; {% endif %};">#}
 {#                        <span style="color: {% if folder_read == 0 or folder_like == 1 %} 'var(--text-color)' {% else %} #777 {% endif %};">{{ folder.relative_path }}</span>#}
 {#                    </div>#}
@@ -227,18 +228,18 @@
                         {% set folder_delete = folder_details[folder.folder_id].delete_status %}
                         <a class="folder-icon" id="icon-{{ folder.folder_id }}" data-folder-id="{{ folder.folder_id }}" data-relative-path="{{ folder.relative_path }}"
                            onClick="goToFolder('{{ folder.folder_id }}')">
-                            <i class="fas fa-folder" style="color: {% if folder_like == 1 and folder.relative_path != '上一级' %} #f5b1aa {% else %} #697EBF {% endif %};
-                                 {% if folder_delete == 1 %} text-decoration: line-through; {% endif %};"></i> <!-- 文件夹图标 -->
+                            <i class="fas fa-folder" style="color: {% if folder_like == 1 and folder.relative_path != 'Up' %} #f5b1aa {% else %} #697EBF {% endif %};
+                                 {% if folder_delete == 1 %} text-decoration: line-through; {% endif %};"></i> <!-- folder icon -->
                             <span style="color: {% if folder_read == 0 or folder_like == 1 %} black {% else %} #777 {% endif %};">{{ folder.relative_path | truncate(50) }}</span>
                         </a>
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="no-media-message">无媒体文件</div>
+                <div class="no-media-message">No media files</div>
             {% endif %}
 
         {% endif %}
-        <!-- 圆形按钮 -->
+        <!-- Circular button -->
         <button id="actionButton" class="floating-btn"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
@@ -270,7 +271,7 @@
         if (checkbox.checked) {
             const gridItems = document.querySelectorAll('.grid-item');
             gridItems.forEach(item => {
-                // 如果不是 .video 类的元素，则隐藏它
+                // hide items that are not videos
                 if (!item.classList.contains('video')) {
                 item.style.display = 'none';
                 }

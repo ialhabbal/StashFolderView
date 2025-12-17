@@ -1,13 +1,13 @@
 function logout() {
     fetch('/logout', {
         method: 'GET',
-        credentials: 'same-origin' // 保证请求时带上当前的 session 信息
+        credentials: 'same-origin' // ensure current session info is sent with the request
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = '/'; // 重定向到登录页面
+            window.location.href = '/'; // redirect to login page
         } else {
-            alert('退出失败，请稍后再试');
+            alert('Logout failed, please try again later');
         }
     })
     .catch(error => {

@@ -1,4 +1,4 @@
-/*图片爱心*/
+/* Image heart */
 .like-icon {
     position: absolute;
     bottom: 10px;
@@ -13,11 +13,11 @@
 }
 
 .fas.fa-heart {
-    color: red; /* 红色爱心 */
+    color: red; /* Red heart */
 }
 
 .far.fa-heart {
-    color: white; /* 空心爱心 */
+    color: white; /* Empty heart */
 }
 
 .pre-like-icon {

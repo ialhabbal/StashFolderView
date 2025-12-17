@@ -5,20 +5,20 @@ const selectVideoCheckbox = document.getElementById('select-video');
 const folderList = document.getElementById('folderList');
 
 function updateFolderVisibility() {
-    // 获取所有文件夹项
+    // Get all folder items
     const folders = folderList.getElementsByClassName('folder');
 
     for (let folder of folders) {
         const folderRead = folder.getAttribute('data-folder-read');
         const folderRelativePath = folder.getAttribute('data-folder-relative-path');
 
-        // 判断复选框状态和文件夹的状态
-        if (toggleReadCheckbox.checked === false) {
-            // 如果 check_box 为 0，全部显示
+        // Determine checkbox state and folder visibility
+            if (toggleReadCheckbox.checked === false) {
+                // If toggle is off, show all folders
             folder.style.display = 'block';
         } else {
-            // 如果 check_box 为 1，且 folder.relative_path != '上一级'，隐藏 folder_read == 1 的项
-            if (folderRelativePath !== '上一级' && folderRead === '1') {
+                // If toggle is on, hide read folders except the 'Up' entry
+                if (folderRelativePath !== 'Up' && folderRead === '1') {
                 folder.style.display = 'none';
             } else {
                 folder.style.display = 'block';
@@ -27,7 +27,7 @@ function updateFolderVisibility() {
     }
 }
 
-// 监听复选框状态变化
+// Listen for checkbox state changes
 selectVideoCheckbox.addEventListener('change', function (){
     localStorage.setItem('newWindowCheckbox', selectVideoCheckbox.checked);
 });
@@ -40,7 +40,7 @@ toggleReadCheckbox.addEventListener('change', function (){
 
 
 window.onload = function() {
-    // 检查 localStorage 中是否有已保存的状态
+    // Check if a saved state exists in localStorage
     const savedState1 = localStorage.getItem('toggleReadState');
     const savedState2 = localStorage.getItem('newWindowCheckbox');
     const storedFolderId = localStorage.getItem('folder_id');
@@ -51,7 +51,7 @@ window.onload = function() {
     }
     if (storedFolderId) {
         // console.log(storedFolderId)
-        // 获取对应的元素
+        // get the corresponding element
         var element = document.getElementById(storedFolderId);
         var folder_icon = document.getElementById("icon-" + storedFolderId);
         // console.log(folder_icon)
@@ -62,9 +62,9 @@ window.onload = function() {
             var folder_bar = element.querySelector(".folder-bar")
             var folder_icon_item = folder_icon.querySelector('i')
             // console.log(folder_icon_item)
-            if (folderRelativePath !== '上一级') {
-                // 滚动到该元素
-                // console.log("定位中")
+            if (folderRelativePath !== 'Up') {
+                // scroll to that element
+                // console.log("locating")
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
                 folder_icon_item.scrollIntoView({ behavior: "smooth", block: "center" });
                 folder_bar.style.backgroundColor = '#c86b85'
